@@ -15,7 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from todos.views import NginxTest
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('server/', NginxTest.as_view(), name='test'),
 ]
