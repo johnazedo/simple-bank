@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'access'
 ]
 
 REST_FRAMEWORK = {
@@ -75,6 +76,17 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'auth.wsgi.application'
+
+SESSION_ENGINE = 'redis_sessions.session'
+SESSION_REDIS = {
+    'host': '127.0.0.1',
+    'port': 6379,
+    'db': 0,
+    'password': '',
+    'prefix': 'session',
+    'socket_timeout': 1,
+    'retry_on_timeout': False
+}
 
 
 AUTH_USER_MODEL = 'auth.User'
