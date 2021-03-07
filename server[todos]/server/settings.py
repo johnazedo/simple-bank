@@ -71,6 +71,17 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'server.wsgi.application'
 
+SESSION_ENGINE = 'redis_sessions.session'
+SESSION_REDIS = {
+    'host': '127.0.0.1',
+    'port': 6379,
+    'db': 0,
+    'password': '',
+    'prefix': 'session',
+    'socket_timeout': 1,
+    'retry_on_timeout': False
+}
+
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
