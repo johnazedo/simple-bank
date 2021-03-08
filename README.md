@@ -1,2 +1,2 @@
 # Microservice
-Simple project to implement a microservices architecture with django
+A project to implement a microservices architecture with django
