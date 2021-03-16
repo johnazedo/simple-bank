@@ -77,16 +77,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'auth.wsgi.application'
 
-SESSION_ENGINE = 'redis_sessions.session'
-SESSION_REDIS = {
-    'host': '127.0.0.1',
-    'port': 6379,
-    'db': 0,
-    'password': '',
-    'prefix': 'session',
-    'socket_timeout': 1,
-    'retry_on_timeout': False
-}
+# SESSION_ENGINE = 'redis_sessions.session'
+# SESSION_REDIS = {
+#     'host': '127.0.0.1',
+#     'port': 6379,
+#     'db': 0,
+#     'password': '',
+#     'prefix': 'session',
+#     'socket_timeout': 1,
+#     'retry_on_timeout': False
+# }
 
 
 AUTH_USER_MODEL = 'auth.User'
@@ -100,6 +100,8 @@ DATABASES = {
     }
 }
 
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
