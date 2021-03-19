@@ -1,8 +1,8 @@
 from django.contrib import admin
 from django.urls import path
-from .views import ListTodo, DetailTodo
+from .views import ListTodo, UpdateTodo
 
 urlpatterns = [
-    path('', ListTodo.as_view(), name='list-todos'),
-    path('<int:pk>', DetailTodo.as_view(), name='detail-todos')
+    path('', ListTodo.as_view(), name='list-create-todos'),
+    path('<int:pk>', UpdateTodo.as_view(), name='update-todos')
 ]

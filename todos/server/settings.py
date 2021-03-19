@@ -25,7 +25,7 @@ SECRET_KEY = '=v4!7_cvsg*!u_9s(6$ep30t(cg43+1)e%0&v-w6#3ruw&9^^d'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -71,16 +71,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'server.wsgi.application'
 
-SESSION_ENGINE = 'redis_sessions.session'
-SESSION_REDIS = {
-    'host': '127.0.0.1',
-    'port': 6379,
-    'db': 0,
-    'password': '',
-    'prefix': 'session',
-    'socket_timeout': 1,
-    'retry_on_timeout': False
-}
+# SESSION_ENGINE = 'redis_sessions.session'
+# SESSION_REDIS = {
+#     'host': '127.0.0.1',
+#     'port': 6379,
+#     'db': 0,
+#     'password': '',
+#     'prefix': 'session',
+#     'socket_timeout': 1,
+#     'retry_on_timeout': False
+# }
 
 
 # Database
