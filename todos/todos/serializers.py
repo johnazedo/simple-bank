@@ -1,5 +1,6 @@
 from rest_framework.serializers import ModelSerializer
-from .models import Todo
+from .models import Todo, Category
+
 
 class TodoSerializer(ModelSerializer):
 
@@ -21,3 +22,18 @@ class TodoSerializer(ModelSerializer):
         )
 
         return todo
+
+
+class CategorySerializer(ModelSerializer):
+
+    class Meta:
+        model = Category
+        fields = '__all__'
+    
+    def create(self, validated_data):
+        category = Category.objects.create(
+            name=validated_data['name'],
+            color=validated_data['color'],
+            icon=validated_data.get('icon', None)
+        )
+        return category
