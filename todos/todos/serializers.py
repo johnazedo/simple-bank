@@ -34,6 +34,6 @@ class CategorySerializer(ModelSerializer):
         category = Category.objects.create(
             name=validated_data['name'],
             color=validated_data['color'],
-            icon=validated_data.get('icon', None)
+            icon_code=validated_data.get('icon', None)
         )
         return category

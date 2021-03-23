@@ -19,7 +19,7 @@ class Todo(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=128, null=False)
     color = models.CharField(max_length=6, null=False)
-    icon = models.CharField(max_length=128, null=True, blank=True)
+    icon_code = models.PositiveIntegerField(null=False, blank=False)
 
     class Meta:
         verbose_name = 'Category'
