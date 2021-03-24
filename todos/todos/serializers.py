@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer
+from rest_framework.serializers import ModelSerializer, SerializerMethodField
 from .models import Todo, Category
 
 
@@ -25,11 +25,15 @@ class TodoSerializer(ModelSerializer):
 
 
 class CategorySerializer(ModelSerializer):
+    count_todos = SerializerMethodField()
 
     class Meta:
         model = Category
         fields = '__all__'
     
+    def get_count_todos(self, instance):
+        return Todo.objects.filter(category=instance).count()
+
     def create(self, validated_data):
         category = Category.objects.create(
             name=validated_data['name'],
