@@ -6,7 +6,10 @@ class TodoSerializer(ModelSerializer):
 
     class Meta:
         model = Todo
-        fields = ('id', 'text', 'done')
+        fields = ('id', 'text', 'done', 'category')
+        extra_kwargs = {
+            'category': {'write_only': True},
+        }
 
     
     def update(self, instance: Todo, validated_data):
@@ -18,7 +21,8 @@ class TodoSerializer(ModelSerializer):
     def create(self, validated_data):
         todo = Todo.objects.create(
             text=validated_data['text'],
-            done=validated_data.get('done', False)
+            done=validated_data.get('done', False),
+            category=validated_data.get('category', None)
         )
 
         return todo

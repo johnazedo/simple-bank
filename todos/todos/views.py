@@ -4,11 +4,14 @@ from rest_framework.response import Response
 from todos.models import Todo, Category
 from todos.serializers import TodoSerializer, CategorySerializer
 from rest_framework.permissions import AllowAny
-
+from django_filters.rest_framework.backends import DjangoFilterBackend
+from todos.filters import TodoFilter
 
 class ListTodos(ListCreateAPIView):
     permission_classes = [AllowAny]
     queryset = Todo.objects.all()
+    filter_backends = (DjangoFilterBackend,)
+    filterset_class = TodoFilter
     serializer_class = TodoSerializer
 
 
