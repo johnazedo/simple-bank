@@ -13,8 +13,26 @@ type Note struct {
 }
 
 var db []Note;
-func GetNotes(response http.ResponseWriter, request *http.Request){
-	json.NewEncoder(response).Encode(db)
+func GetNotes(w http.ResponseWriter, r *http.Request){
+	json.NewEncoder(w).Encode(db)
+}
+
+func CreateNotes(w http.ResponseWriter, r *http.Request){
+	var note *Note
+	err := json.NewDecoder(r.Body).Decode(&note)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
+	db = append(db, *note)
+	json.NewEncoder(w).Encode(*note)
+}
+
+func Router() *mux.Router {
+	router := mux.NewRouter()
+	router.HandleFunc("/notes", GetNotes).Methods("GET")
+	router.HandleFunc("/notes", CreateNotes).Methods("POST")
+	return router
 }
 
 func main() {
@@ -23,7 +41,5 @@ func main() {
 		Note{"2", "This is a note to test"},
 	}...)
 
-	router := mux.NewRouter()
-	router.HandleFunc("/notes", GetNotes).Methods("GET")
-	log.Fatal(http.ListenAndServe(":10000", router))
+	log.Fatal(http.ListenAndServe(":10000", Router()))
 }
