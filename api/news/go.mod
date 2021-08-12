@@ -1,5 +1,5 @@
-module github.com/news
+module news
 
 go 1.16
 
-require github.com/gorilla/mux v1.8.0 // indirect
+require github.com/go-chi/chi v1.5.4
