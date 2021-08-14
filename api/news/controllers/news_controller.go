@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"github.com/go-chi/chi"
 	"log"
 	"net/http"
 	"news/database"
@@ -25,5 +26,13 @@ func (nc *NewsController) Create(w http.ResponseWriter, r *http.Request) {
 	}
 
 	database.GetDB().Create(&news)
+	json.NewEncoder(w).Encode(&news)
+}
+
+
+func (nc *NewsController) Get(w http.ResponseWriter, r *http.Request) {
+	var news domain.News;
+	pk := chi.URLParam(r, "pk")
+	database.GetDB().First(&news, pk)
 	json.NewEncoder(w).Encode(&news)
 }

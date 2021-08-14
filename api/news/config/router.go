@@ -11,5 +11,6 @@ func Router() *chi.Mux{
 	controller := controllers.NewsController{}
 	router.Get("/",  controller.FetchAll)
 	router.Post("/create", controller.Create)
+	router.Get("/{pk}", controller.Get)
 	return router
 }
