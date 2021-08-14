@@ -36,3 +36,20 @@ func (nc *NewsController) Get(w http.ResponseWriter, r *http.Request) {
 	database.GetDB().First(&news, pk)
 	json.NewEncoder(w).Encode(&news)
 }
+
+
+func (nc *NewsController) Delete(w http.ResponseWriter, r *http.Request) {
+	var news domain.News;
+	result := make(map[string]string)
+	result["msg"] = "Object deleted!"
+
+	pk := chi.URLParam(r, "pk")
+
+	err := database.GetDB().Delete(&news, pk).Error
+	if err != nil {
+		log.Println("Cannot delete this!")
+		result["msg"] = "Invalid Request"
+	}
+
+	json.NewEncoder(w).Encode(result)
+}

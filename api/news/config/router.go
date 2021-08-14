@@ -12,5 +12,6 @@ func Router() *chi.Mux{
 	router.Get("/",  controller.FetchAll)
 	router.Post("/create", controller.Create)
 	router.Get("/{pk}", controller.Get)
+	router.Delete("/{pk}/delete", controller.Delete)
 	return router
 }
