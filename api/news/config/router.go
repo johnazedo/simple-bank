@@ -8,7 +8,8 @@ import (
 func Router() *chi.Mux{
 	router := chi.NewRouter()
 
-	newsController := controllers.NewsController{}
-	router.Get("/", newsController.Fetch)
+	controller := controllers.NewsController{}
+	router.Get("/",  controller.FetchAll)
+	router.Post("/create", controller.Create)
 	return router
 }
