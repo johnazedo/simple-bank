@@ -1,3 +1,3 @@
 # Microservice
-A project to implement a microservices architecture with django and GO.
+A project to implement a microservices architecture with FastAPI and GO.
 
