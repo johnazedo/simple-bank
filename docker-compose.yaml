@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  database:
+    container_name: gatewaydb
+    image: mongo
+    restart: always
+    environment:
+      - MONGO_INITDB_DATABASE=gateway
+      - MONGO_INITDB_ROOT_USERNAME=gatewaydb
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    ports:
+      - "27017:27017"
+    volumes:
+      - gatewaydb:/home/johnazedo/Documents/Volumes/Gateway
+
+volumes:
+  gatewaydb:
