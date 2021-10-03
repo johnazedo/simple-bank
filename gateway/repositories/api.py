@@ -7,16 +7,24 @@ from pymongo.errors import DuplicateKeyError
 from typing import Tuple
 
 
-class APIRepository:
-    COLLECTION_NAME = 'api'
+class Repository:
+    COLLECTION_NAME: str
 
     def __init__(self):
+        self.get_collection()
+
+    def get_collection(self):
         self.collection = DATABASE.get_collection(self.COLLECTION_NAME)
+
+
+class APIRepository(Repository):
+    COLLECTION_NAME = 'api'
 
     async def create(self, api: API) -> Tuple[API, bool]:
         try:
             result: InsertOneResult = await self.collection.insert_one(api.dict())
-            return (await self.retrieve(_id=result.inserted_id), False)
+            api = await self.retrieve(_id=result.inserted_id)
+            return (api, False)
         except DuplicateKeyError:
             return (None, True)
             
@@ -27,3 +35,6 @@ class APIRepository:
     async def fetch_all(self) -> List[API]:
         apis = [API(**result) async for result in self.collection.find()]
         return apis
+
+    
+    
