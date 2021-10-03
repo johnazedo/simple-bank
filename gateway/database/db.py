@@ -8,4 +8,4 @@ DATABASE = CLIENT.gateway
 
 def mongo_setup():
     collection = DATABASE.get_collection('api')
-    collection.create_index('slug')
+    collection.create_index('slug', unique=True)
