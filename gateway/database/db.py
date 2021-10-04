@@ -1,5 +1,5 @@
 from motor.motor_asyncio import AsyncIOMotorClient
-from settings import Settings
+from gateway.settings import Settings
 USERPROFILE_DOC_TYPE = 'userprofile'
 
 

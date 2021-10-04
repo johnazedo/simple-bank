@@ -1,8 +1,8 @@
 from typing import List
 from bson import ObjectId
 from pymongo.results import InsertOneResult
-from models.api import API
-from database.db import DATABASE
+from gateway.models.api import API
+from gateway.database.db import DATABASE
 from pymongo.errors import DuplicateKeyError
 from typing import Tuple
 

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from controllers.api import router as api_router
-from database.db import mongo_setup
+from gateway.controllers.api import router as api_router
+from gateway.database.db import mongo_setup
 
 app = FastAPI()
 
