@@ -51,68 +51,45 @@ func (m *ProductRepositoryMock) CreateProduct(product *domain.Product) error {
 }
 
 func TestCreateProductUseCase(t *testing.T) {
-	productRepository := new(ProductRepositoryMock)
-	uuidRepository := new(UUIDRepositoryMock)
-	useCase := domain.CreateProductUseCase{
-		productRepository,
-		uuidRepository,
-	}
-
-	t.Run(
-		"GivenValidProductReturnProduct",
-		GivenValidProductReturnSuccessState(useCase, productRepository, uuidRepository))
-
-	t.Run("GivenUUIDErrorReturnErrorState",
-		GivenUUIDErrorReturnErrorState(useCase, productRepository, uuidRepository))
-
-	t.Run("GivenCreateProductErrorReturnErrorState",
-		GivenCreateProductErrorReturnErrorState(useCase, productRepository, uuidRepository))
-
+	t.Run("GivenValidProductReturnProduct", GivenValidProductReturnSuccessState())
+	t.Run("GivenUUIDErrorReturnErrorState", GivenUUIDErrorReturnErrorState())
+	t.Run("GivenCreateProductErrorReturnErrorState", GivenCreateProductErrorReturnErrorState())
 }
 
-func GivenValidProductReturnSuccessState(
-	useCase domain.CreateProductUseCase,
-	productRepository *ProductRepositoryMock,
-	uuidRepository *UUIDRepositoryMock) func(t *testing.T) {
-
+func GivenValidProductReturnSuccessState() func(t *testing.T) {
 	// Given a valid product when calling Execute then it will return ProductCreated
-	productRepository.On("CreateProduct").Return(nil)
-	uuidRepository.On("GetNewUUID").Return("bb84993a-29be-4fd8-9da4-76037ab37b83", nil)
-
+	useCase := CreateProductUseCaseFactory(nil, nil)
 	return func(t *testing.T) {
 		result := useCase.Execute(&domain.Product{Price: 10, Amount: 1})
 		assert.Equal(t, domain.ProductCreated, result)
 	}
 }
 
-// TODO: Fix this
-func GivenUUIDErrorReturnErrorState(
-	useCase domain.CreateProductUseCase,
-	productRepository *ProductRepositoryMock,
-	uuidRepository *UUIDRepositoryMock) func(t *testing.T) {
-
+func GivenUUIDErrorReturnErrorState() func(t *testing.T) {
 	// Given an error in UUIDRepository when calling GetNewUUID then it will return ProductCreateError
-	productRepository.On("CreateProduct").Return(nil)
-	uuidRepository.On("GetNewUUID").Return(nil, errors.New("Internal error"))
-
+	useCase := CreateProductUseCaseFactory(nil, errors.New("Internal error"))
 	return func(t *testing.T) {
 		result := useCase.Execute(&domain.Product{Price: 10, Amount: 1})
 		assert.Equal(t, domain.ProductCreateError, result)
 	}
 }
 
-// TODO: Fix this
-func GivenCreateProductErrorReturnErrorState(
-	useCase domain.CreateProductUseCase,
-	productRepository *ProductRepositoryMock,
-	uuidRepository *UUIDRepositoryMock) func(t *testing.T) {
-
+func GivenCreateProductErrorReturnErrorState() func(t *testing.T) {
 	// Given an error when calling CreateProduct then it will return ProductCreateError
-	productRepository.On("CreateProduct").Return(errors.New("Internal error"))
-	uuidRepository.On("GetNewUUID").Return("bb84993a-29be-4fd8-9da4-76037ab37b83", nil)
-
+	useCase := CreateProductUseCaseFactory(errors.New("Internal error"), nil)
 	return func(t *testing.T) {
 		result := useCase.Execute(&domain.Product{Price: 10, Amount: 1})
 		assert.Equal(t, domain.ProductCreateError, result)
+	}
+}
+
+func CreateProductUseCaseFactory(productRepositoryError error, uuidRepositoryError error) *domain.CreateProductUseCase {
+	productRepository := new(ProductRepositoryMock)
+	uuidRepository := new(UUIDRepositoryMock)
+	productRepository.On("CreateProduct").Return(productRepositoryError)
+	uuidRepository.On("GetNewUUID").Return("bb84993a-29be-4fd8-9da4-76037ab37b83", uuidRepositoryError)
+	return &domain.CreateProductUseCase{
+		productRepository,
+		uuidRepository,
 	}
 }
