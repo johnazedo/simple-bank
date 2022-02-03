@@ -1,10 +1,17 @@
 package main
 
-import "net/http"
+import (
+	"github.com/go-chi/chi/middleware"
+	"net/http"
+	_ "net/http"
+
+	"github.com/go-chi/chi"
+	_ "github.com/go-chi/chi/middleware"
+)
 
 func main(){
-	err := http.ListenAndServe("localhost:8080", nil)
-	if err != nil {
-		return 
-	}
+	router := chi.NewRouter()
+	router.Use(middleware.Logger)
+	router.Get("/", nil)
+	_ = http.ListenAndServe(":3000", router)
 }
