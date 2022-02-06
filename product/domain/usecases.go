@@ -5,15 +5,18 @@ type CreateProductUseCase struct {
 	UUIDRepository
 }
 
-func (uc CreateProductUseCase) Execute(product *Product) State{
+func (uc CreateProductUseCase) Execute(product *Product) error {
 	uuid, err := uc.UUIDRepository.GetNewUUID()
-	if err != nil { return ProductCreateError }
+	if err != nil { return err }
 
-	product.CheckValidPrice()
+	err = product.CheckValidPrice()
+	if err != nil { return err }
+
 	product.CheckValidAmount()
 	product.UUID = uuid
 
 	err = uc.ProductRepository.CreateProduct(product)
-	if err != nil { return ProductCreateError }
-	return ProductCreated
+	if err != nil { return err }
+
+	return nil
 }

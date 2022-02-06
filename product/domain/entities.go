@@ -37,8 +37,9 @@ func (p *Product) CheckValidAmount() {
 	}
 }
 
-func (p *Product) CheckValidPrice() {
+func (p *Product) CheckValidPrice() error {
 	if p.Price <= 0 {
-		panic(InvalidPriceError{})
+		return InvalidPriceError{}
 	}
+	return nil
 }
