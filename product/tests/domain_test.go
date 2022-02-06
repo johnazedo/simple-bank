@@ -24,7 +24,7 @@ func GivenPriceZeroReturnError(product Product) func(*testing.T) {
 	// Given a product with price equal or less than 0 when calling CheckValidPrice then it will trigger panic error
 	return func(t *testing.T){
 		err := product.CheckValidPrice()
-		expected := InvalidPriceError{}.Error()
+		expected := InvalidPriceError.Error()
 		assert.EqualError(t, err, expected, "Error must be InvalidPriceError type")
 	}
 }
