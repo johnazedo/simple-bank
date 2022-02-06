@@ -1,4 +1,4 @@
-package infra
+package repositories
 
 import (
 	"github.com/JohnAzedo/eCommerce/product/domain"

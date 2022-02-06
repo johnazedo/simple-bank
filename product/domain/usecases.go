@@ -5,6 +5,10 @@ type CreateProductUseCase struct {
 	UUIDRepository
 }
 
+func NewCreateProductUseCase(pr ProductRepository, ur UUIDRepository) *CreateProductUseCase{
+	return &CreateProductUseCase{pr, ur}
+}
+
 func (uc CreateProductUseCase) Execute(product *Product) error {
 	uuid, err := uc.UUIDRepository.GetNewUUID()
 	if err != nil { return err }
@@ -20,3 +24,4 @@ func (uc CreateProductUseCase) Execute(product *Product) error {
 
 	return nil
 }
+
