@@ -39,7 +39,7 @@ func (p *Product) CheckValidAmount() {
 
 func (p *Product) CheckValidPrice() error {
 	if p.Price <= 0 {
-		return InvalidPriceError{}
+		return InvalidPriceError
 	}
 	return nil
 }

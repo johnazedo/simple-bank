@@ -1,7 +1,7 @@
 package database
 
 import (
-	"gorm.io/driver/sqlite"
+	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"sync"
 )
@@ -18,7 +18,7 @@ func GetInstance() *gorm.DB {
 	locker.Lock()
 	if instance == nil {
 		var err error
-		instance, err = gorm.Open(sqlite.Open("products.db"), &gorm.Config{})
+		instance, err = gorm.Open(postgres.Open("host=0.0.0.0 port=5432 user=lemonade dbname=products password=lemonade sslmode=disable"), &gorm.Config{})
 		if err != nil {
 			locker.Unlock()
 			panic("Failed to connect database")

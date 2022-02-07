@@ -7,7 +7,7 @@ import (
 )
 
 type Model struct {
-	UUID        string `gorm:"primarykey;autoIncrement:false"`
+	UUID        string `gorm:"primarykey;autoIncrement:false;unique;not null"`
 	CreatedAt time.Time
 	UpdatedAt time.Time
 	DeletedAt gorm.DeletedAt `gorm:"index"`
