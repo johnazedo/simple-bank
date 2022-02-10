@@ -1,0 +1,14 @@
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+  "name": "TV Sony 2020",
+  "image": "some url",
+  "price": 1400.0,
+  "description": "Some description",
+  "measurement": "/unidade",
+  "amount": 10
+}
+
+###
+
