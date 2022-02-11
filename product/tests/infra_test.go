@@ -3,7 +3,7 @@ package tests
 import (
 	"context"
 	"github.com/JohnAzedo/eCommerce/product/domain"
-	"github.com/JohnAzedo/eCommerce/product/infra/repositories"
+	"github.com/JohnAzedo/eCommerce/product/infra/postgres"
 	"github.com/stretchr/testify/assert"
 	"testing"
 )
@@ -14,7 +14,7 @@ func TestProductRepository(t *testing.T){
 	if err != nil {
 		panic(err)
 	}
-	repository := repositories.ProductRepositoryImpl{DB: container.Database}
+	repository := postgres.ProductRepositoryImpl{DB: container.Database}
 	t.Run("GivenValidProductReturnSuccess", GivenValidProductReturnSuccess(repository))
 	container.Terminate(ctx)
 }

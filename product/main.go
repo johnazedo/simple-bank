@@ -2,14 +2,14 @@ package main
 
 import (
 	"github.com/JohnAzedo/eCommerce/product/controllers"
-	"github.com/JohnAzedo/eCommerce/product/infra/database"
+	"github.com/JohnAzedo/eCommerce/product/infra/postgres"
 	"github.com/gin-gonic/gin"
 	_ "net/http"
 )
 
 func main(){
-	db := database.GetInstance()
-	database.Migrate(db)
+	db := postgres.GetInstance()
+	postgres.Migrate(db)
 
 	router := gin.Default()
 

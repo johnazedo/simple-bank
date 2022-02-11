@@ -1,8 +1,7 @@
-package repositories
+package postgres
 
 import (
 	. "github.com/JohnAzedo/eCommerce/product/domain"
-	. "github.com/JohnAzedo/eCommerce/product/infra/database"
 	"gorm.io/gorm"
 )
 

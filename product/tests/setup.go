@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/JohnAzedo/eCommerce/product/infra/database"
+	postgres2 "github.com/JohnAzedo/eCommerce/product/infra/postgres"
 	"github.com/testcontainers/testcontainers-go"
 	"github.com/testcontainers/testcontainers-go/wait"
 	"gorm.io/driver/postgres"
@@ -71,7 +71,7 @@ func SetupDatabase(dbname string, host string, port string) (*gorm.DB, error) {
 		return nil, err
 	}
 
-	err = db.AutoMigrate(&database.ProductModel{})
+	err = db.AutoMigrate(&postgres2.ProductModel{})
 	if err != nil {
 		return nil, errors.New("Error on ProductModel: " + err.Error())
 	}

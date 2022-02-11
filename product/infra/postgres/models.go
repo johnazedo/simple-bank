@@ -1,4 +1,4 @@
-package database
+package postgres
 
 import (
 	. "github.com/JohnAzedo/eCommerce/product/domain"
@@ -35,11 +35,11 @@ func (pm ProductModel) ToProductEntity() *Product{
 
 func FromProductEntity(entity *Product) *ProductModel {
 	return &ProductModel{
-		Model: Model{ UUID: entity.UUID },
-		Name: entity.Name,
-		Price: entity.Price,
+		Model:       Model{ UUID: entity.UUID },
+		Name:        entity.Name,
+		Price:       entity.Price,
 		Description: entity.Description,
 		Measurement: entity.Measurement,
-		Amount: entity.Amount,
+		Amount:      entity.Amount,
 	}
 }

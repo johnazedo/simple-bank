@@ -2,17 +2,17 @@ package controllers
 
 import (
 	"github.com/JohnAzedo/eCommerce/product/domain"
-	"github.com/JohnAzedo/eCommerce/product/infra/database"
-	"github.com/JohnAzedo/eCommerce/product/infra/repositories"
+	"github.com/JohnAzedo/eCommerce/product/infra"
+	"github.com/JohnAzedo/eCommerce/product/infra/postgres"
 )
 
 func ProductControllerFactory() *ProductController {
 	return &ProductController{
 		domain.NewCreateProductUseCase(
-			repositories.ProductRepositoryImpl{
-				DB: database.GetInstance(),
+			postgres.ProductRepositoryImpl{
+				DB: postgres.GetInstance(),
 			},
-			repositories.UUIDRepositoryImpl{},
+			infra.UUIDRepositoryImpl{},
 		),
 	}
 }
