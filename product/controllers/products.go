@@ -5,17 +5,19 @@ import (
 	"fmt"
 	"github.com/JohnAzedo/eCommerce/product/domain"
 	"github.com/gin-gonic/gin"
+	"github.com/go-playground/validator/v10"
 	"net/http"
 )
 
 type ProductController struct {
-	*domain.CreateProductUseCase
+	domain.CreateProductUseCase
 }
 
 func (pc *ProductController) CreateProduct(c *gin.Context) {
 	usecase := pc.CreateProductUseCase
 	product := domain.Product{}
 	err := c.Bind(&product)
+	err = validator.New().Struct(&product)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"status":"failed", "message": errors.New("Invalid request body")})
@@ -31,5 +33,4 @@ func (pc *ProductController) CreateProduct(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusCreated, gin.H{"status":"success", "user": &product})
-
 }

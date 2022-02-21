@@ -1,15 +1,20 @@
 package domain
 
-type CreateProductUseCase struct {
+type CreateProductUseCase interface {
+	Execute(product *Product) error
+}
+
+type CreateProductUseCaseImpl struct {
+	CreateProductUseCase
 	ProductRepository
 	UUIDRepository
 }
 
-func NewCreateProductUseCase(pr ProductRepository, ur UUIDRepository) *CreateProductUseCase{
-	return &CreateProductUseCase{pr, ur}
+func NewCreateProductUseCase(pr ProductRepository, ur UUIDRepository) CreateProductUseCase{
+	return &CreateProductUseCaseImpl{ProductRepository: pr, UUIDRepository: ur}
 }
 
-func (uc CreateProductUseCase) Execute(product *Product) error {
+func (uc CreateProductUseCaseImpl) Execute(product *Product) error {
 	uuid, err := uc.UUIDRepository.GetNewUUID()
 	if err != nil { return err }
 

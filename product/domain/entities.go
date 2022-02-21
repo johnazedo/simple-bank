@@ -8,13 +8,13 @@ const (
 )
 
 type Product struct {
-	UUID        string      `json:"uuid"`
-	Name        string      `json:"name"`
+	UUID        string      `json:"uuid" validate:"required"`
+	Name        string      `json:"name" validate:"required"`
 	Image       string      `json:"image"`
-	Price       float32     `json:"price"`
+	Price       float32     `json:"price" validate:"required"`
 	Description string      `json:"description"`
 	Measurement Measurement `json:"measurement"`
-	Amount      int         `json:"amount"`
+	Amount      int         `json:"amount" validate:"required"`
 }
 
 func NewProduct(name string, image string, price float32,
