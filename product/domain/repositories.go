@@ -7,3 +7,7 @@ type ProductRepository interface {
 type UUIDRepository interface {
 	GetNewUUID() (string, error)
 }
+
+type ChannelRepository interface {
+	PublishProduct(product *Product) error
+}

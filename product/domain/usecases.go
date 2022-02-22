@@ -7,6 +7,7 @@ type CreateProductUseCase interface {
 type CreateProductUseCaseImpl struct {
 	CreateProductUseCase
 	ProductRepository
+	ChannelRepository
 	UUIDRepository
 }
 
@@ -25,6 +26,9 @@ func (uc CreateProductUseCaseImpl) Execute(product *Product) error {
 	product.UUID = uuid
 
 	err = uc.ProductRepository.CreateProduct(product)
+	if err != nil { return err }
+
+	err = uc.ChannelRepository.PublishProduct(product)
 	if err != nil { return err }
 
 	return nil

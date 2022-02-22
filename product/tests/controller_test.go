@@ -27,7 +27,7 @@ func GivenInvalidReqBodyWhenCreateProductReturnStatusBadRequest() func(*testing.
 	return func(t *testing.T){
 		ts := httptest.NewServer(controllers.SetupServer(&controller))
 		defer ts.Close()
-		response, _ := http.Post(ts.URL + "/products",  "application/json", bytes.NewBuffer(reqBody))
+		response, _ := http.Post(ts.URL + "/products/create",  "application/json", bytes.NewBuffer(reqBody))
 		assert.Equal(t, response.StatusCode, http.StatusBadRequest)
 	}
 }
