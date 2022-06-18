@@ -25,6 +25,7 @@ func LoadUsers() {
 }
 
 // Create a webserver using Echo
+// Just a test to check if my email is correct
 func main() {
 	LoadUsers()
 	e := echo.New()
