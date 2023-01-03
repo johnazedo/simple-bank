@@ -1,0 +1,11 @@
+version: "3.3"
+services:
+  gateway:
+    container_name: gateway
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    restart: on-failure
+    env_file:
+      - .env
