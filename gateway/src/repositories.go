@@ -5,19 +5,29 @@ import (
 	"net/http"
 )
 
-type RoutesRepository struct {
+type RoutesRepositoryImpl struct {
 	db *gorm.DB
 }
 
-func (r *RoutesRepository) GetRoute(slug string) (Route, error) {
+func (r *RoutesRepositoryImpl) GetRoute(slug string) (Route, error) {
 	var route Route
 	err := r.db.First(&route, "slug = ?", slug).Error
 	return route, err
 }
 
-type RequestRepository struct {
+type RoutesRepositoryFake struct{}
+
+func (r *RoutesRepositoryFake) GetRoute(slug string) (Route, error) {
+	return Route{
+		ID:   "1",
+		Name: "Random",
+		Host: "https://uselessfacts.jsph.pl/",
+		Slug: "random",
+	}, nil
 }
 
-func (r *RequestRepository) SendRequest(response http.Response) (*http.Response, error) {
+type RequestRepositoryImpl struct{}
+
+func (r *RequestRepositoryImpl) SendRequest(response http.Response) (*http.Response, error) {
 	return nil, nil
 }
