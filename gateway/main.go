@@ -9,11 +9,11 @@ import (
 func main() {
 	server := gin.Default()
 	controller := RouterController{
-		UseCase: GetRouteUseCase{
+		GetServerUseCase: GetServerUseCase{
 			RoutesRepository: RoutesRepositoryFake{},
 		},
 	}
-	server.GET("/:", controller.Proxy)
+	server.Any("/*slug", controller.Proxy)
 	if err := server.Run("0.0.0.0:8000"); err != nil {
 		log.Fatal(err)
 	}

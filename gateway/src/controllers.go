@@ -1,18 +1,41 @@
 package src
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"net/http"
+	"net/http/httputil"
+	"net/url"
 )
 
 type RouterController struct {
-	UseCase GetRouteUseCase
+	GetServerUseCase
 }
 
-func (ctrl *RouterController) Proxy(c *gin.Context) {
-	_, err := ctrl.UseCase.Invoke(c.FullPath())
+func (ctrl RouterController) Proxy(c *gin.Context) {
+	path := c.Param("slug")
+
+	// Get server specs
+	server, err := ctrl.GetServerUseCase.Invoke(path)
 	if err != nil {
-		c.JSON(http.StatusNotFound, err)
+		c.JSON(http.StatusNotFound, gin.H{"error": "resource not found"})
+		return
 	}
-	c.JSON(http.StatusOK, gin.H{"message": "OK"})
+
+	// Get a new url
+	// TODO: Create a use case to get a path without the first string
+	proxyUrl, err := url.Parse(fmt.Sprintf("%s%s", server.Host, "random.json"))
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "problem to parse url"})
+		return
+	}
+
+	// Make a new request
+	reverseProxy := httputil.NewSingleHostReverseProxy(proxyUrl)
+	reverseProxy.Director = func(request *http.Request) {
+		request.Header = c.Request.Header
+		request.Host = proxyUrl.Host
+		request.URL = proxyUrl
+	}
+	reverseProxy.ServeHTTP(c.Writer, c.Request)
 }

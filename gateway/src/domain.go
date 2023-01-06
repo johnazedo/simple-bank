@@ -4,7 +4,7 @@ import (
 	"strings"
 )
 
-type Route struct {
+type Server struct {
 	ID   string
 	Name string
 	Host string
@@ -13,15 +13,14 @@ type Route struct {
 }
 
 type RoutesRepository interface {
-	GetRoute(slug string) (Route, error)
+	GetServer(slug string) (Server, error)
 }
 
-type GetRouteUseCase struct {
+type GetServerUseCase struct {
 	RoutesRepository
 }
 
-func (uc GetRouteUseCase) Invoke(path string) (Route, error) {
-	// To test use this api: https://uselessfacts.jsph.pl/random.json?language=en
-	slug := strings.SplitAfter(path, "/")[0]
-	return uc.GetRoute(slug)
+func (uc GetServerUseCase) Invoke(path string) (Server, error) {
+	slug := strings.Split(strings.TrimPrefix(path, "/"), "/")[0]
+	return uc.GetServer(slug)
 }
