@@ -1,8 +1,8 @@
 package src
 
 import (
+	"errors"
 	"gorm.io/gorm"
-	"net/http"
 )
 
 type RoutesRepositoryImpl struct {
@@ -17,17 +17,15 @@ func (r *RoutesRepositoryImpl) GetRoute(slug string) (Route, error) {
 
 type RoutesRepositoryFake struct{}
 
-func (r *RoutesRepositoryFake) GetRoute(slug string) (Route, error) {
-	return Route{
-		ID:   "1",
-		Name: "Random",
-		Host: "https://uselessfacts.jsph.pl/",
-		Slug: "random",
-	}, nil
-}
-
-type RequestRepositoryImpl struct{}
-
-func (r *RequestRepositoryImpl) SendRequest(response http.Response) (*http.Response, error) {
-	return nil, nil
+func (r *RoutesRepositoryFake) GetRoute(slug string) (*Route, error) {
+	if slug == "random.json" {
+		return &Route{
+			ID:   "1",
+			Name: "Random",
+			Host: "https://uselessfacts.jsph.pl/",
+			Slug: "random",
+		}, nil
+	} else {
+		return nil, errors.New("route not found")
+	}
 }

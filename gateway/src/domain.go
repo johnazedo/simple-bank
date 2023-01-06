@@ -1,6 +1,8 @@
 package src
 
-import "net/http"
+import (
+	"strings"
+)
 
 type Route struct {
 	ID   string
@@ -14,16 +16,12 @@ type RoutesRepository interface {
 	GetRoute(slug string) (Route, error)
 }
 
-type RequestRepository interface {
-	SendRequest(response http.Response) (*http.Response, error)
-}
-
-type SendRequestUseCase struct {
+type GetRouteUseCase struct {
 	RoutesRepository
-	RequestRepository
 }
 
-func (uc *SendRequestUseCase) Invoke(request *http.Request) (*http.Response, error) {
+func (uc *GetRouteUseCase) Invoke(path string) (Route, error) {
 	// To test use this api: https://uselessfacts.jsph.pl/random.json?language=en
-	return nil, nil
+	slug := strings.SplitAfter(path, "/")[0]
+	return uc.GetRoute(slug)
 }
