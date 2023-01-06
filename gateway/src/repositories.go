@@ -10,9 +10,10 @@ type RoutesRepositoryImpl struct {
 }
 
 func (r *RoutesRepositoryImpl) GetServer(slug string) (Server, error) {
-	var route Server
-	err := r.db.First(&route, "slug = ?", slug).Error
-	return route, err
+	// TODO: Replace fake repository with this code
+	var server Server
+	err := r.db.First(&server, "slug = ?", slug).Error
+	return server, err
 }
 
 type RoutesRepositoryFake struct{}
