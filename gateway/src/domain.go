@@ -20,7 +20,7 @@ type GetRouteUseCase struct {
 	RoutesRepository
 }
 
-func (uc *GetRouteUseCase) Invoke(path string) (Route, error) {
+func (uc GetRouteUseCase) Invoke(path string) (Route, error) {
 	// To test use this api: https://uselessfacts.jsph.pl/random.json?language=en
 	slug := strings.SplitAfter(path, "/")[0]
 	return uc.GetRoute(slug)

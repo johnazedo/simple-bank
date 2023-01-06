@@ -1,7 +1,7 @@
 package src
 
 import (
-	"github.com/labstack/echo/v4"
+	"github.com/gin-gonic/gin"
 	"net/http"
 )
 
@@ -9,10 +9,10 @@ type RouterController struct {
 	UseCase GetRouteUseCase
 }
 
-func (ctrl *RouterController) Get(c echo.Context) error {
-	_, err := ctrl.UseCase.Invoke(c.Path())
+func (ctrl *RouterController) Proxy(c *gin.Context) {
+	_, err := ctrl.UseCase.Invoke(c.FullPath())
 	if err != nil {
-		return err
+		c.JSON(http.StatusNotFound, err)
 	}
-	return c.JSON(http.StatusOK, "")
+	c.JSON(http.StatusOK, gin.H{"message": "OK"})
 }

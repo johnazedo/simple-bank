@@ -17,15 +17,15 @@ func (r *RoutesRepositoryImpl) GetRoute(slug string) (Route, error) {
 
 type RoutesRepositoryFake struct{}
 
-func (r *RoutesRepositoryFake) GetRoute(slug string) (*Route, error) {
+func (r RoutesRepositoryFake) GetRoute(slug string) (Route, error) {
 	if slug == "random.json" {
-		return &Route{
+		return Route{
 			ID:   "1",
 			Name: "Random",
 			Host: "https://uselessfacts.jsph.pl/",
 			Slug: "random",
 		}, nil
 	} else {
-		return nil, errors.New("route not found")
+		return Route{}, errors.New("route not found")
 	}
 }

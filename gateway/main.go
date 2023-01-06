@@ -1,15 +1,20 @@
 package main
 
 import (
+	"github.com/gin-gonic/gin"
 	. "github.com/johnazedo/marketplace/gateway/src"
-	"github.com/labstack/echo/v4"
+	"log"
 )
 
 func main() {
-	server := echo.New()
+	server := gin.Default()
 	controller := RouterController{
-		UseCase: SendRequestUseCase{},
+		UseCase: GetRouteUseCase{
+			RoutesRepository: RoutesRepositoryFake{},
+		},
 	}
-	server.GET("/:", controller.Get)
-	server.Logger.Fatal(server.Start("0.0.0.0:8000"))
+	server.GET("/:", controller.Proxy)
+	if err := server.Run("0.0.0.0:8000"); err != nil {
+		log.Fatal(err)
+	}
 }
