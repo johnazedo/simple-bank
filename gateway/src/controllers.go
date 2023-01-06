@@ -31,6 +31,7 @@ func (ctrl RouterController) Proxy(c *gin.Context) {
 	}
 
 	// Make a new request
+	// TODO: Remove this dependency hard coded
 	reverseProxy := httputil.NewSingleHostReverseProxy(proxyUrl)
 	reverseProxy.Director = func(request *http.Request) {
 		request.Header = c.Request.Header
