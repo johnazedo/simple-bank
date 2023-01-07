@@ -27,7 +27,7 @@ fn guessing_game() {
 
         match guess_number.cmp(&value) {
             Ordering::Less => println!("Too small!"),
-            Ordering:: Greater => println!("Too big!"),
+            Ordering::Greater => println!("Too big!"),
             Ordering::Equal => println!("You win")
         }
     }
