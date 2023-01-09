@@ -7,6 +7,20 @@ fn main() {
 }
 
 
+use std::collections::HashMap;
+pub fn two_sum(nums: Vec<i32>, target: i32) -> Vec<i32> {
+    let mut mapping: HashMap<i32, i32> = HashMap::new();
+
+    for (i, v) in nums.iter().enumerate() {
+        if mapping.contains_key(&(target - v)) {
+            return vec![mapping[&(target-v)], i as i32]
+        } else {
+            mapping.insert(*v, i as i32);
+        }
+    }
+    return Vec::new()
+}
+
 fn guessing_game() {
     println!("Guessing the number");
     let mut guess_number: i32 = -1;
