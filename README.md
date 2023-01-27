@@ -8,4 +8,4 @@ A project to implement a microservices architecture with GO.
 - RF03: Send notification to the store to send the products;
 - RF04: Stores can create and update products;
 - RF05: Send part of payment to stores;
-- RF06: When payment was done, remove quantity of product from stock.  
+- RF06: When payment was done, remove quantity of product from stock. 
