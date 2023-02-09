@@ -1,4 +1,5 @@
-# Simple Back
+# Simple Bank
+
 A project to implement a microservices architecture with GO.
 
 ### Requirements
