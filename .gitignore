@@ -1,158 +1,13 @@
+# Created by 
+https://www.toptal.com/developers/gitignore/api/java,intellij+all,visualstudiocode,maven
+# Edit at 
+https://www.toptal.com/developers/gitignore?templates=java,intellij+all,visualstudiocode,maven
 
-# Created by https://www.toptal.com/developers/gitignore/api/python,venv,pycharm+iml,django,vscode
-# Edit at https://www.toptal.com/developers/gitignore?templates=python,venv,pycharm+iml,django,vscode
-
-### Django ###
-*.log
-*.pot
-*.pyc
-__pycache__/
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-media
-
-# If your build process includes running collectstatic, then you probably don't need or want to include staticfiles/
-# in your Git repository. Update and uncomment the following line accordingly.
-# <django-project-name>/staticfiles/
-
-### Django.Python Stack ###
-# Byte-compiled / optimized / DLL files
-*.py[cod]
-*$py.class
-
-# C extensions
-*.so
-
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-pip-wheel-metadata/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
-.pytest_cache/
-pytestdebug.log
-
-# Translations
-*.mo
-
-# Django stuff:
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-doc/_build/
-
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-pythonenv*
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-# pytype static type analyzer
-.pytype/
-
-# profiling data
-.prof
-
-### PyCharm+iml ###
-# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, CLion, Android Studio, WebStorm and Rider
-# Reference: https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
+### Intellij+all ###
+# Covers JetBrains IDEs: IntelliJ, RubyMine, PhpStorm, AppCode, PyCharm, 
+CLion, Android Studio, WebStorm and Rider
+# Reference: 
+https://intellij-support.jetbrains.com/hc/en-us/articles/206544839
 
 # User-specific stuff
 .idea/**/workspace.xml
@@ -160,6 +15,9 @@ dmypy.json
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
+
+# AWS User-specific
+.idea/**/aws.xml
 
 # Generated files
 .idea/**/contentModel.xml
@@ -178,7 +36,8 @@ dmypy.json
 .idea/**/libraries
 
 # Gradle and Maven with auto-import
-# When using Gradle or Maven with auto-import, you should exclude module files,
+# When using Gradle or Maven with auto-import, you should exclude module 
+files,
 # since they will be recreated, and may cause churn.  Uncomment if using
 # auto-import.
 # .idea/artifacts
@@ -211,6 +70,9 @@ atlassian-ide-plugin.xml
 # Cursive Clojure plugin
 .idea/replstate.xml
 
+# SonarLint plugin
+.idea/sonarlint/
+
 # Crashlytics plugin (for Android Studio and IntelliJ)
 com_crashlytics_export_strings.xml
 crashlytics.properties
@@ -223,273 +85,80 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
-### PyCharm+iml Patch ###
-# Reason: https://github.com/joeblau/gitignore.io/issues/186#issuecomment-249601023
+### Intellij+all Patch ###
+# Ignore everything but code style settings and run configurations
+# that are supposed to be shared within teams.
 
-*.iml
-modules.xml
-.idea/misc.xml
-*.ipr
+.idea/*
 
-### Python ###
-# Byte-compiled / optimized / DLL files
+!.idea/codeStyles
+!.idea/runConfigurations
 
-# C extensions
+### Java ###
+# Compiled class file
+*.class
 
-# Distribution / packaging
+# Log file
+*.log
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+# BlueJ files
+*.ctxt
 
-# Installer logs
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
 
-# Unit test / coverage reports
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
 
-# Translations
+# virtual machine crash logs, see 
+http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+replay_pid*
 
-# Django stuff:
+### Maven ###
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+# https://github.com/takari/maven-wrapper#usage-without-binary-jar
+.mvn/wrapper/maven-wrapper.jar
 
-# Flask stuff:
+# Eclipse m2e generated files
+# Eclipse Core
+.project
+# JDT-specific (Eclipse Java Development Tools)
+.classpath
 
-# Scrapy stuff:
-
-# Sphinx documentation
-
-# PyBuilder
-
-# Jupyter Notebook
-
-# IPython
-
-# pyenv
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow
-
-# Celery stuff
-
-# SageMath parsed files
-
-# Environments
-
-# Spyder project settings
-
-# Rope project settings
-
-# mkdocs documentation
-
-# mypy
-
-# Pyre type checker
-
-# pytype static type analyzer
-
-# profiling data
-
-### venv ###
-# Virtualenv
-# http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
-[Bb]in
-[Ii]nclude
-[Ll]ib
-[Ll]ib64
-[Ll]ocal
-[Ss]cripts
-pyvenv.cfg
-pip-selfcheck.json
-
-### vscode ###
+### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-*.code-workspace
+!.vscode/*.code-snippets
 
-# End of https://www.toptal.com/developers/gitignore/api/python,venv,pycharm+iml,django,vscode
+# Local History for Visual Studio Code
+.history/
 
-# Created by https://www.toptal.com/developers/gitignore/api/node,yarn
-# Edit at https://www.toptal.com/developers/gitignore?templates=node,yarn
+# Built Visual Studio Code Extensions
+*.vsix
 
-### Node ###
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-lerna-debug.log*
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
+.ionide
 
-# Diagnostic reports (https://nodejs.org/api/report.html)
-report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+# End of 
+https://www.toptal.com/developers/gitignore/api/java,intellij+all,visualstudiocode,maven
 
-# Runtime data
-pids
-*.pid
-*.seed
-*.pid.lock
-
-# Directory for instrumented libs generated by jscoverage/JSCover
-lib-cov
-
-# Coverage directory used by tools like istanbul
-coverage
-*.lcov
-
-# nyc test coverage
-.nyc_output
-
-# Grunt intermediate storage (https://gruntjs.com/creating-plugins#storing-task-files)
-.grunt
-
-# Bower dependency directory (https://bower.io/)
-bower_components
-
-# node-waf configuration
-.lock-wscript
-
-# Compiled binary addons (https://nodejs.org/api/addons.html)
-build/Release
-
-# Dependency directories
-node_modules/
-jspm_packages/
-
-# TypeScript v1 declaration files
-typings/
-
-# TypeScript cache
-*.tsbuildinfo
-
-# Optional npm cache directory
-.npm
-
-# Optional eslint cache
-.eslintcache
-
-# Optional stylelint cache
-.stylelintcache
-
-# Microbundle cache
-.rpt2_cache/
-.rts2_cache_cjs/
-.rts2_cache_es/
-.rts2_cache_umd/
-
-# Optional REPL history
-.node_repl_history
-
-# Output of 'npm pack'
-*.tgz
-
-# Yarn Integrity file
-.yarn-integrity
-
-# dotenv environment variables file
-.env
-.env.test
-.env*.local
-
-# parcel-bundler cache (https://parceljs.org/)
-.cache
-.parcel-cache
-
-# Next.js build output
-.next
-
-# Nuxt.js build / generate output
-.nuxt
-dist
-
-# Gatsby files
-.cache/
-# Comment in the public line in if your project uses Gatsby and not Next.js
-# https://nextjs.org/blog/next-9-1#public-directory-support
-# public
-
-# vuepress build output
-.vuepress/dist
-
-# Serverless directories
-.serverless/
-
-# FuseBox cache
-.fusebox/
-
-# DynamoDB Local files
-.dynamodb/
-
-# TernJS port file
-.tern-port
-
-# Stores VSCode versions used for testing VSCode extensions
-.vscode-test
-
-### yarn ###
-# https://yarnpkg.com/advanced/qa#which-files-should-be-gitignored
-
-.yarn/*
-!.yarn/releases
-!.yarn/plugins
-!.yarn/sdks
-!.yarn/versions
-
-# if you are NOT using Zero-installs, then:
-# comment the following lines
-!.yarn/cache
-
-# and uncomment the following lines
-# .pnp.*
-
-# End of https://www.toptal.com/developers/gitignore/api/node,yarn
-
-### Go ###
-# Binaries for programs and plugins
-*.exe
-*.exe~
-*.dll
-*.so
-*.dylib
-
-# Test binary, built with `go test -c`
-*.test
-
-# Output of the go coverage tool, specifically when used with LiteIDE
-*.out
-
-# Dependency directories (remove the comment below to include it)
-# vendor/
-
-### Go Patch ###
-/vendor/
-/Godeps/
-.idea
-
-.vscode
-
-# Created by https://www.toptal.com/developers/gitignore/api/rust
-# Edit at https://www.toptal.com/developers/gitignore?templates=rust
-
-### Rust ###
-# Generated by Cargo
-# will have compiled files and executables
-debug/
-target/
-
-# Remove Cargo.lock from gitignore if creating an executable, leave it for libraries
-# More information here https://doc.rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html
-Cargo.lock
-
-# These are backup files generated by rustfmt
-**/*.rs.bk
-
-# MSVC Windows builds of rustc generate these, which store debugging information
-*.pdb
-
-# End of https://www.toptal.com/developers/gitignore/api/rust

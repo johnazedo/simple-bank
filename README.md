@@ -1,6 +1,6 @@
 # Simple Bank
 
-A project to implement a microservices architecture with GO.
+A project to implement a service with Spring Boot.
 
 ### Requirements
 Temos 2 tipos de usuários, os comuns e lojistas, ambos têm carteira com dinheiro e realizam transferências entre eles. Vamos nos atentar **somente** ao fluxo de transferência entre dois usuários.
